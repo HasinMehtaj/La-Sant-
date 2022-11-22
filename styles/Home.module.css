@@ -4,12 +4,11 @@
 
 .main {
   min-height: 100vh;
-  padding: 4rem 0;
+  background-color: #f8f8f8;
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  
 }
 
 .footer {
@@ -74,7 +73,7 @@
 }
 
 .card {
-  margin: 1rem;
+  margin-top: 10rem;
   padding: 1.5rem;
   text-align: left;
   color: inherit;
@@ -95,11 +94,13 @@
 .card h2 {
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .card p {
   margin: 0;
   font-size: 1.25rem;
+  font-family: 'Times New Roman', Times, serif;
   line-height: 1.5;
 }
 
@@ -126,4 +127,17 @@
   .logo img {
     filter: invert(1);
   }
+  
 }
+
+.card-img-overlay {
+  margin-top: 10rem;
+  position: absolute;
+  top: 10;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: var(--bs-card-img-overlay-padding);
+  border-radius: var(--bs-card-inner-border-radius);
+}
+ 
