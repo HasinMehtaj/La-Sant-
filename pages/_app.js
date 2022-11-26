@@ -1,13 +1,15 @@
 import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.css";
-import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
+import React from "react";
+import { useEffect } from "react";
 
 function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    import("bootstrap/dist/js/bootstrap");
+  }, []);
   return (
     <>
       <Component {...pageProps} />
-      <Footer />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "../Components/Navbar";
+import Navbar from "../components/Navbar";
 
-const EditProfile = () => {
+const editprofile = () => {
   return (
     <>
       <Navbar></Navbar>
@@ -95,4 +95,4 @@ const EditProfile = () => {
   );
 };
 
-export default EditProfile;
+export default editprofile;

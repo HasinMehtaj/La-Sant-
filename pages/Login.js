@@ -2,7 +2,7 @@ import { login } from "../express_api/auth_api";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import React, { useState } from "react";
-import Navbar from "../Components/Navbar";
+import Navbar from "../components/Navbar";
 import { useRouter } from "next/router";
 
 const Login = () => {

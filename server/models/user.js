@@ -2,6 +2,16 @@ const mongoose = require("mongoose");
 
 const UserSchema = mongoose.Schema(
   {
+    dietPlan_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "plan",
+    },
+
+    workoutPlan_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "plan",
+    },
+
     username: {
       type: String,
       required: [true, "Please provide a username"],

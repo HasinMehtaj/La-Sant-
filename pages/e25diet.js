@@ -2,14 +2,14 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-const TrackProgress = () => {
+const e25diet = () => {
   return (
     <>
       <Navbar></Navbar>
-      TrackProgress
-      <Footer></Footer>
+
+      <h1>Hello there! You are fit, let us help you maintain that.</h1>
     </>
   );
 };
 
-export default TrackProgress;
+export default e25diet;

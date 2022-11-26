@@ -32,7 +32,7 @@ const Navbar = () => {
               <li className="nav-item nav-link active">BMI Calculator</li>
             </Link>
 
-            <Link href={"/ChartAndRoutine"}>
+            <Link href={"/chartandroutine"}>
               <li className="nav-item nav-link active">Chart and Routine</li>
             </Link>
 

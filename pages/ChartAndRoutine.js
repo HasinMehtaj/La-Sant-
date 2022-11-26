@@ -1,10 +1,11 @@
 import React from "react";
-import Navbar from "../Components/Navbar";
+import Navbar from "../components/Navbar";
 
-const ChartAndRoutine = () => {
+const chartandroutine = () => {
   return (
     <>
       <Navbar></Navbar>
+
       <section className="vh-100 bg-light grey">
         <div className="container py-5 h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
@@ -46,4 +47,4 @@ const ChartAndRoutine = () => {
   );
 };
 
-export default ChartAndRoutine;
+export default chartandroutine;

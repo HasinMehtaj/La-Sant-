@@ -2,19 +2,19 @@ import { bmi } from "../express_api/bmi";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import React, { useState } from "react";
-import Navbar from "../Components/Navbar";
+import Navbar from "../components/Navbar";
 import { useRouter } from "next/router";
 
 const BMICalculator = () => {
   const [mass, setMass] = useState("");
   const [height, setHeight] = useState("");
+  const [calculatedbmi, setCalculatedBMI] = useState("");
 
   const handleBMICalculator = async () => {
     try {
       let data = await bmi(mass, height);
       if (!data.error) {
-        Cookies.get("token", data.token);
-        Cookies.get("user", JSON.stringify(data.user));
+        setCalculatedBMI(data.BMI);
       }
 
       console.log(data);
@@ -67,8 +67,10 @@ const BMICalculator = () => {
                   </button>
 
                   <input
+                    disabled
                     type="text"
                     id="text"
+                    value={calculatedbmi}
                     className="form-control form-control-lg"
                   />
                 </div>
