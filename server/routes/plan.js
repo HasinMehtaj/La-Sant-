@@ -5,14 +5,7 @@ const router = express.Router();
 const Plan = require("../models/plan");
 const User = require("../models/User");
 const auth = require("../middleware/auth");
-
-const createUserProgresses = async (req, res) => {
-  try {
-    let { user, planId } = req;
-  } catch (error) {
-    console.error("createUserProgresses -> error", error);
-  }
-};
+const { createUserProgresses } = require("../controllers/progress.ctrl");
 
 router.post("/api/plan/suggestPlan", auth, async (req, res) => {
   const userId = req.user._id;
@@ -89,4 +82,5 @@ router.post("/api/plan", async (req, res) => {
     console.error("error", error);
   }
 });
+
 module.exports = router;

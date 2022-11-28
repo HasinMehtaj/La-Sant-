@@ -17,6 +17,8 @@ const todoSubSchema = mongoose.Schema(
   }
 );
 
+mongoose.model("todo", todoSubSchema);
+
 const PlanSchema = mongoose.Schema(
   {
     title: { type: String, required: true },

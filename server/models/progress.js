@@ -1,4 +1,5 @@
 //Progress Schema
+const mongoose = require("mongoose");
 
 const ProgressSchema = mongoose.Schema(
   {

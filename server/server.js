@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 const authRoutes = require("./routes/auth");
 const bmiRoutes = require("./routes/bmi");
 const planRoutes = require("./routes/plan");
+const progressRoutes = require("./routes/progress.routes");
 
 const connectDB = async () => {
   try {
@@ -35,6 +36,7 @@ server.use(
 server.use("/", authRoutes);
 server.use("/", bmiRoutes);
 server.use("/", planRoutes);
+server.use("/", progressRoutes);
 
 app
   .prepare()
