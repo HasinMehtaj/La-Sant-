@@ -21,4 +21,21 @@ const bmi = async (mass, height) => {
   }
 };
 
-export { bmi };
+const getbmi = async () => {
+  try {
+    const token = Cookie.get("token");
+    let res = await fetch("/api/bmi", {
+      method: "get",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    });
+    return await res.json();
+  } catch (error) {
+    console.log("bmi error", error);
+  }
+};
+
+export { bmi, getbmi };
