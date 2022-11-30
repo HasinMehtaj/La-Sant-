@@ -17,33 +17,17 @@ const getbmi = async () => {
 	}
 };
 
-const getDietPlan = async (bmi, planType) => {
+const suggestPlan = async (planType, bmi) => {
 	try {
 		const token = Cookie.get('token');
 		let res = await fetch('/api/plan/suggestPlan', {
-			method: 'get',
+			method: 'post',
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json',
 				Authorization: 'Bearer ' + token,
 			},
-		});
-		return await res.json();
-	} catch (error) {
-		console.log('getDietPlan error', error);
-	}
-};
-
-const getsuggestDiet = async () => {
-	try {
-		const token = Cookie.get('token');
-		let res = await fetch('/api/plan/suggestPlan', {
-			method: 'get',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + token,
-			},
+			body: JSON.stringify({ planType, bmi }),
 		});
 		return await res.json();
 	} catch (error) {
@@ -51,4 +35,4 @@ const getsuggestDiet = async () => {
 	}
 };
 
-export { getbmi, getDietPlan, getsuggestDiet };
+export { getbmi, suggestPlan };
