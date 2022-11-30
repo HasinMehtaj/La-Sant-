@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import Navbar from "../components/Navbar";
 
@@ -22,18 +23,14 @@ const chartandroutine = () => {
                     </label>
                   </div>
 
-                  <button
-                    className="btn btn-dark btn-lg btn-block"
-                    type="submit"
-                  >
-                    Diet Chart
-                  </button>
+                  <Link href={"/a25diet"}>
+                    <button className="btn btn-dark btn-lg btn-block" type="">
+                      Diet Chart
+                    </button>
+                  </Link>
 
                   <div className="mt-5">
-                    <button
-                      className="btn btn-dark btn-lg btn-block"
-                      type="submit"
-                    >
+                    <button className="btn btn-dark btn-lg btn-block" type="">
                       Workout Routine
                     </button>
                   </div>

@@ -17,138 +17,171 @@ const a25dietweek1 = () => {
                   <th>6 am</th>
                   <th>6:30 am</th>
                   <th>8 am</th>
+                  <th>10 am</th>
                   <th>1 pm</th>
                   <th>4 pm</th>
                   <th>8 pm</th>
+                  <th>Tasks Completed</th>
                 </tr>
               </thead>
 
               <tbody>
                 <tr className="table-light secondary">
                   <td>1</td>
-                  <td>Glass of warm water with fennel seed</td>
-                  <td>1 bowl of seassonal fruits</td>
-                  <td>
-                    1 large bowl full of sugar-free oatmeal with berries and
-                    black coffee
-                  </td>
+                  <td>1 glass of lukewarm lemon water</td>
+                  <td>Sour fruit salad</td>
+                  <td>1 apple</td>
 
+                  <td>1 glass of apple juice</td>
+                  <td>Sour fruit salad with Greek yogurt dressing</td>
+                  <td>1 glass of pomegranate juice</td>
                   <td>
-                    1 medium cup stead sprout with cucumber, cherry and green
-                    shallots
+                    Sour fruit salad with Greek yogurt dressing and drizzled
+                    vinegar
                   </td>
-                  <td>1 cup green tea with plain toast</td>
                   <td>
-                    Boiled vegetables with one cup f shredded chicken drizzled
-                    with vinegar
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="inlineFormCheck"
+                      />
+                    </div>
                   </td>
                 </tr>
 
                 <tr className="table-light secondary">
                   <td>2</td>
-                  <td>Glass of warm water with fennel</td>
-                  <td>1 bowl of seassonal fruits</td>
-                  <td>
-                    1 large bowl full of sugar-free oatmeal with berries and
-                    black coffee
-                  </td>
+                  <td>1 glass of lukewarm lemon water</td>
+                  <td>Vegetable salad with fat-free yogurt dressing</td>
+                  <td>Sliced cucumber and tomatoes</td>
 
+                  <td>1 glass of cucumber juice</td>
+                  <td>Sautéed vegetables with potato nuggets</td>
+                  <td>1 glass of carrot juice</td>
+                  <td>Vegetable salad with vinegar</td>
                   <td>
-                    1 medium cup steam sprout with mixed vegetable and fish
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="inlineFormCheck"
+                      />
+                    </div>
                   </td>
-                  <td>1 cup green tea with plain toast</td>
-                  <td>Cucumber salad with soud curd dressing</td>
                 </tr>
 
                 <tr className="table-light secondary">
                   <td>3</td>
-                  <td>Glass of warm water with fennel seed</td>
-                  <td>1 bowl of seassonal fruits</td>
-                  <td>
-                    1 large bowl full of sugar-free oatmeal with berries and
-                    black coffee
-                  </td>
+                  <td>1 glass of lukewarm lemon water</td>
+                  <td>Sour fruit salad</td>
+                  <td>1 apple</td>
 
+                  <td>1 glass of apple juice</td>
+                  <td>Sour fruit salad with Greek yogurt dressing</td>
+                  <td>1 glass of pomegranate juice</td>
                   <td>
-                    1 medium cup stead sprout with cucumber, cherry and green
-                    shallots
+                    Sour fruit salad with Greek yogurt dressing and drizzled
+                    vinegar{" "}
                   </td>
-                  <td>1 cup green tea with plain toast</td>
                   <td>
-                    Boiled vegetables with one cup f shredded chicken drizzled
-                    with vinegar
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="inlineFormCheck"
+                      />
+                    </div>
                   </td>
                 </tr>
 
                 <tr className="table-light secondary">
                   <td>4</td>
-                  <td>Glass of warm water with fennel</td>
-                  <td>1 bowl of seassonal fruits</td>
-                  <td>
-                    1 large bowl full of sugar-free oatmeal with berries and
-                    black coffee
-                  </td>
+                  <td>1 glass of lukewarm lemon water</td>
+                  <td>Vegetable salad with fat-free yogurt dressing</td>
+                  <td>Sliced cucumber and tomatoes</td>
 
+                  <td>1 glass of cucumber juice</td>
+                  <td>Sautéed vegetables with potato nuggets</td>
+                  <td>1 glass of carrot juice</td>
+                  <td>Vegetable salad with vinegar</td>
                   <td>
-                    1 medium cup steam sprout with mixed vegetable and fish
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="inlineFormCheck"
+                      />
+                    </div>
                   </td>
-                  <td>1 cup green tea with plain toast</td>
-                  <td>Cucumber salad with soud curd dressing</td>
                 </tr>
 
                 <tr className="table-light secondary">
                   <td>5</td>
-                  <td>Glass of warm water with fennel seed</td>
-                  <td>1 bowl of seassonal fruits</td>
-                  <td>
-                    1 large bowl full of sugar-free oatmeal with berries and
-                    black coffee
-                  </td>
+                  <td>1 glass of lukewarm lemon water</td>
+                  <td>Sour fruit salad</td>
+                  <td>1 apple</td>
 
+                  <td>1 glass of apple juice</td>
+                  <td>Sour fruit salad with Greek yogurt dressing</td>
+                  <td>1 glass of pomegranate juice</td>
                   <td>
-                    1 medium cup stead sprout with cucumber, cherry and green
-                    shallots
+                    Sour fruit salad with Greek yogurt dressing and drizzled
+                    vinegar{" "}
                   </td>
-                  <td>1 cup green tea with plain toast</td>
                   <td>
-                    Boiled vegetables with one cup f shredded chicken drizzled
-                    with vinegar
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="inlineFormCheck"
+                      />
+                    </div>
                   </td>
                 </tr>
 
                 <tr className="table-light secondary">
                   <td>6</td>
-                  <td>Glass of warm water with fennel</td>
-                  <td>1 bowl of seassonal fruits</td>
-                  <td>
-                    1 large bowl full of sugar-free oatmeal with berries and
-                    black coffee
-                  </td>
+                  <td>1 glass of lukewarm lemon water</td>
+                  <td>Vegetable salad with fat-free yogurt dressing</td>
+                  <td>Sliced cucumber and tomatoes</td>
 
+                  <td>1 glass of cucumber juice</td>
+                  <td>Sautéed vegetables with potato nuggets</td>
+                  <td>1 glass of carrot juice</td>
+                  <td>Vegetable salad with vinegar</td>
                   <td>
-                    1 medium cup steam sprout with mixed vegetable and fish
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="inlineFormCheck"
+                      />
+                    </div>
                   </td>
-                  <td>1 cup green tea with plain toast</td>
-                  <td>Cucumber salad with soud curd dressing</td>
                 </tr>
 
                 <tr className="table-light secondary">
                   <td>7</td>
-                  <td>Glass of warm water with fennel seed</td>
-                  <td>1 bowl of seassonal fruits</td>
-                  <td>
-                    1 large bowl full of sugar-free oatmeal with berries and
-                    black coffee
-                  </td>
+                  <td>1 glass of lukewarm lemon water</td>
+                  <td>Sour fruit salad</td>
+                  <td>1 apple</td>
 
+                  <td>1 glass of apple juice</td>
+                  <td>Sour fruit salad with Greek yogurt dressing</td>
+                  <td>1 glass of pomegranate juice</td>
                   <td>
-                    1 medium cup stead sprout with cucumber, cherry and green
-                    shallots
+                    Sour fruit salad with Greek yogurt dressing and drizzled
+                    vinegar{" "}
                   </td>
-                  <td>1 cup green tea with plain toast</td>
                   <td>
-                    Boiled vegetables with one cup f shredded chicken drizzled
-                    with vinegar
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="inlineFormCheck"
+                      />
+                    </div>
                   </td>
                 </tr>
               </tbody>

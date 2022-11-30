@@ -14,7 +14,7 @@ const BMICalculator = () => {
     try {
       let data = await bmi(mass, height);
       if (!data.error) {
-        setCalculatedBMI(data.BMI);
+        setCalculatedBMI(data.BMI.toFixed(2));
       }
 
       console.log(data);
@@ -35,7 +35,7 @@ const BMICalculator = () => {
                   <h1 className="mb-5">BMI Calculator</h1>
                   <div className="form-outline mb-4">
                     <label className="form-label" htmlFor="text">
-                      Mass (Pound)
+                      Mass (Kilograms)
                     </label>
                     <input
                       type="text"
@@ -48,7 +48,7 @@ const BMICalculator = () => {
 
                   <div className="form-outline mb-4">
                     <label className="form-label" htmlFor="text">
-                      Height (Feet)
+                      Height (Metres)
                     </label>
                     <input
                       type="text"

@@ -18,21 +18,21 @@ router.post("/api/plan/suggestPlan", auth, async (req, res) => {
 
     if (bmi < 18) {
       if (planType === "Diet") {
-        planTitle = "";
+        planTitle = "Diet Plans for Underweight People";
       } else if (planType === "Workout") {
-        planTitle = "";
+        planTitle = "Workout Plans for Underweight People";
       }
     } else if (bmi >= 18 && bmi <= 25) {
       if (planType === "Diet") {
-        planTitle = "";
+        planTitle = "Diet Plans for Fit People";
       } else if (planType === "Workout") {
-        planTitle = "";
+        planTitle = "Workout Plans for Fit People";
       }
     } else if (bmi > 25) {
       if (planType === "Diet") {
-        planTitle = "Diet Plan Test 1";
+        planTitle = "Diet Plans for Overweight People";
       } else if (planType === "Workout") {
-        planTitle = "";
+        planTitle = "Workout Plans for Overweight People";
       }
     }
 
@@ -79,6 +79,15 @@ router.post("/api/plan", async (req, res) => {
     res.json(plan);
   } catch (error) {
     res.status(500).json({ error });
+    console.error("error", error);
+  }
+});
+
+router.get("/api/plan", async (req, res) => {
+  try {
+    let plan = await type.findOne({ plan: req.plan._id }).sort({ _id: -1 });
+    res.json(plan);
+  } catch (error) {
     console.error("error", error);
   }
 });

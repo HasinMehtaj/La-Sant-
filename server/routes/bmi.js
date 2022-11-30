@@ -16,4 +16,13 @@ router.post("/api/bmi", auth, async (req, res) => {
   }
 });
 
+router.get("/api/bmi", auth, async (req, res) => {
+  try {
+    let bmi = await BMI.findOne({ user: req.user._id }).sort({ _id: -1 });
+    res.json(bmi);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;

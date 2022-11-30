@@ -17,139 +17,197 @@ const e25dietweek2 = () => {
                   <th>6 am</th>
                   <th>6:30 am</th>
                   <th>8 am</th>
+                  <th>10 am</th>
                   <th>1 pm</th>
                   <th>4 pm</th>
                   <th>8 pm</th>
+                  <th>Tasks Completed</th>
                 </tr>
               </thead>
 
               <tbody>
                 <tr className="table-light secondary">
                   <td>1</td>
-                  <td>Glass of warm water with fennel seed</td>
-                  <td>1 bowl of seassonal fruits</td>
+                  <td>1 glass of warm water with mint leaves</td>
+                  <td> 1 bowl of oatmeal with berries</td>
+                  <td> 1 bowl of seasonal fruits and chia pudding</td>
+                  <td> 1 apple</td>
                   <td>
-                    1 large bowl full of sugar-free oatmeal with berries and
-                    black coffee
+                    {" "}
+                    1 medium cup of steamed sprouts with 2 pieces of fish and
+                    green shallots
                   </td>
-
+                  <td> 1 cup of green tea with plain toast</td>
                   <td>
-                    1 medium cup stead sprout with cucumber, cherry and green
-                    shallots
+                    {" "}
+                    Boiled veggies with one cup of shredded chicken and drizzled
+                    vinegar
                   </td>
-                  <td>1 cup green tea with plain toast</td>
                   <td>
-                    Boiled vegetables with one cup f shredded chicken drizzled
-                    with vinegar
-                  </td>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="inlineFormCheck"
+                      />
+                    </div>
+                  </td>{" "}
                 </tr>
 
                 <tr className="table-light secondary">
                   <td>2</td>
-                  <td>Glass of warm water with fennel</td>
-                  <td>1 bowl of seassonal fruits</td>
+                  <td>1 glass of warm water with mint leaves</td>
+                  <td> 1 bowl of cereal with skim milk and black coffee</td>
+                  <td> 1 bowl of seasonal fruits </td>
+                  <td>1 apple </td>
                   <td>
-                    1 large bowl full of sugar-free oatmeal with berries and
-                    black coffee
+                    1 medium cup of steamed sprouts with mixed veggies and fish{" "}
                   </td>
-
+                  <td>1 cup of americano with plain toast</td>
                   <td>
-                    1 medium cup steam sprout with mixed vegetable and fish
+                    Cucumber salad with chicken breast and sour curd dressing
                   </td>
-                  <td>1 cup green tea with plain toast</td>
-                  <td>Cucumber salad with soud curd dressing</td>
+                  <td>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="inlineFormCheck"
+                      />
+                    </div>
+                  </td>{" "}
                 </tr>
 
                 <tr className="table-light secondary">
                   <td>3</td>
-                  <td>Glass of warm water with fennel seed</td>
-                  <td>1 bowl of seassonal fruits</td>
+                  <td>1 glass of warm water with mint leaves</td>
+                  <td> 1 bowl of oatmeal with berries</td>
+                  <td> 1 bowl of seasonal fruits and chia pudding</td>
+                  <td> 1 apple</td>
                   <td>
-                    1 large bowl full of sugar-free oatmeal with berries and
-                    black coffee
+                    {" "}
+                    1 medium cup of steamed sprouts with 2 pieces of fish and
+                    green shallots
                   </td>
-
+                  <td> 1 cup of green tea with plain toast</td>
                   <td>
-                    1 medium cup stead sprout with cucumber, cherry and green
-                    shallots
+                    Boiled veggies with one cup of shredded chicken and drizzled
+                    vinegar
                   </td>
-                  <td>1 cup green tea with plain toast</td>
                   <td>
-                    Boiled vegetables with one cup f shredded chicken drizzled
-                    with vinegar
-                  </td>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="inlineFormCheck"
+                      />
+                    </div>
+                  </td>{" "}
                 </tr>
 
                 <tr className="table-light secondary">
                   <td>4</td>
-                  <td>Glass of warm water with fennel</td>
-                  <td>1 bowl of seassonal fruits</td>
+                  <td>1 glass of warm water with mint leaves</td>
+                  <td> 1 bowl of cereal with skim milk and black coffee</td>
+                  <td> 1 bowl of seasonal fruits </td>
+                  <td>1 apple </td>
                   <td>
-                    1 large bowl full of sugar-free oatmeal with berries and
-                    black coffee
+                    1 medium cup of steamed sprouts with mixed veggies and fish{" "}
                   </td>
-
+                  <td>1 cup of americano with plain toast</td>
                   <td>
-                    1 medium cup steam sprout with mixed vegetable and fish
+                    {" "}
+                    Cucumber salad with chicken breast and sour curd dressing
                   </td>
-                  <td>1 cup green tea with plain toast</td>
-                  <td>Cucumber salad with soud curd dressing</td>
+                  <td>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="inlineFormCheck"
+                      />
+                    </div>
+                  </td>{" "}
                 </tr>
 
                 <tr className="table-light secondary">
                   <td>5</td>
-                  <td>Glass of warm water with fennel seed</td>
-                  <td>1 bowl of seassonal fruits</td>
+                  <td>1 glass of warm water with mint leaves</td>
+                  <td> 1 bowl of oatmeal with berries</td>
+                  <td> 1 bowl of seasonal fruits and chia pudding</td>
+                  <td> 1 apple</td>
                   <td>
-                    1 large bowl full of sugar-free oatmeal with berries and
-                    black coffee
+                    {" "}
+                    1 medium cup of steamed sprouts with 2 pieces of fish and
+                    green shallots
                   </td>
-
+                  <td> 1 cup of green tea with plain toast</td>
                   <td>
-                    1 medium cup stead sprout with cucumber, cherry and green
-                    shallots
+                    Boiled veggies with one cup of shredded chicken and drizzled
+                    vinegar
                   </td>
-                  <td>1 cup green tea with plain toast</td>
                   <td>
-                    Boiled vegetables with one cup f shredded chicken drizzled
-                    with vinegar
-                  </td>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="inlineFormCheck"
+                      />
+                    </div>
+                  </td>{" "}
                 </tr>
 
                 <tr className="table-light secondary">
                   <td>6</td>
-                  <td>Glass of warm water with fennel</td>
-                  <td>1 bowl of seassonal fruits</td>
+                  <td>1 glass of warm water with mint leaves</td>
+                  <td> 1 bowl of cereal with skim milk and black coffee</td>
+                  <td> 1 bowl of seasonal fruits </td>
+                  <td>1 apple </td>
                   <td>
-                    1 large bowl full of sugar-free oatmeal with berries and
-                    black coffee
+                    1 medium cup of steamed sprouts with mixed veggies and fish{" "}
                   </td>
-
+                  <td>1 cup of americano with plain toast</td>
                   <td>
-                    1 medium cup steam sprout with mixed vegetable and fish
+                    {" "}
+                    Cucumber salad with chicken breast and sour curd dressing
                   </td>
-                  <td>1 cup green tea with plain toast</td>
-                  <td>Cucumber salad with soud curd dressing</td>
+                  <td>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="inlineFormCheck"
+                      />
+                    </div>
+                  </td>{" "}
                 </tr>
 
                 <tr className="table-light secondary">
                   <td>7</td>
-                  <td>Glass of warm water with fennel seed</td>
-                  <td>1 bowl of seassonal fruits</td>
+                  <td>1 glass of warm water with mint leaves</td>
+                  <td> 1 bowl of oatmeal with berries</td>
+                  <td> 1 bowl of seasonal fruits and chia pudding</td>
+                  <td> 1 apple</td>
                   <td>
-                    1 large bowl full of sugar-free oatmeal with berries and
-                    black coffee
+                    {" "}
+                    1 medium cup of steamed sprouts with 2 pieces of fish and
+                    green shallots
                   </td>
-
+                  <td> 1 cup of green tea with plain toast</td>
                   <td>
-                    1 medium cup stead sprout with cucumber, cherry and green
-                    shallots
+                    {" "}
+                    Boiled veggies with one cup of shredded chicken and drizzled
+                    vinegar
                   </td>
-                  <td>1 cup green tea with plain toast</td>
                   <td>
-                    Boiled vegetables with one cup f shredded chicken drizzled
-                    with vinegar
-                  </td>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="inlineFormCheck"
+                      />
+                    </div>
+                  </td>{" "}
                 </tr>
               </tbody>
             </table>
