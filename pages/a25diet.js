@@ -5,11 +5,30 @@ import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { getbmi } from "../express_api/bmi";
-import { getDietPlan, getsuggestDiet } from "../express_api/diet_api";
+import { suggestPlan } from "../express_api/diet_api";
+import format from "date-fns/format";
 
 const a25diet = () => {
   const [BMI, setBMI] = useState(-1);
   const [plan, setPlan] = useState({});
+  const [weekNumber, setWeekNumber] = useState(1);
+  const [todos, setTodos] = useState([]);
+  // const [month, setMonth] = useState(format(new Date(), "MMMM"));
+  const [month, setMonth] = useState("January");
+
+  const handleSetWeek = (weekNumber) => {
+    setWeekNumber(weekNumber);
+    let sliceStart = (weekNumber - 1) * 7;
+    let sliceEnd = weekNumber * 7;
+    setTodos(plan.todos.slice(sliceStart, sliceEnd));
+  };
+
+  const handleSetMonth = (month) => {
+    setMonth(month);
+    let sliceStart = (month - 1) * 28;
+    let sliceEnd = month * 28;
+    setTodos(plan.todos.slice(sliceStart, sliceEnd));
+  };
 
   useEffect(() => {
     getbmi()
@@ -17,24 +36,14 @@ const a25diet = () => {
         if (!data.error) {
           setBMI(data.BMI.toFixed(2));
 
-          getDietPlan(data.type, data.title)
+          suggestPlan("Diet", data.BMI)
             .then((dietPlan) => {
               setPlan(dietPlan);
+              setTodos(dietPlan.todos.slice(0, 7));
             })
             .catch((error) => {
               console.log(error);
             });
-          console.log(data.type, data.title);
-
-          getsuggestDiet(data.BMI, "Diet")
-            .then((dietPlan) => {
-              setPlan(dietPlan);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-
-          console.log(data.BMI);
         }
       })
       .catch((error) => {
@@ -56,9 +65,8 @@ const a25diet = () => {
       <div className={styles.main}>
         <Navbar></Navbar>
 
-        <h1>
-          {`Hello there! You are ${bmiComment}, let's make you follow a proper diet
-        plan to get you fit and healthy.`}
+        <h1 className="text-center">
+          {`Hello there! You are ${bmiComment}, let’s get you a suitable diet`}
           <br />
           <div className="btn-group justify-content-center">
             <button
@@ -68,77 +76,129 @@ const a25diet = () => {
               data-bs-display="static"
               aria-expanded="false"
             >
-              Please choose the month for which you want to see the diet chart
+              {`${month}`}
             </button>
             <ul className="dropdown-menu dropdown-menu-lg-end">
               <li>
-                <button className="dropdown-item" type="button">
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetMonth("January")}
+                >
                   January
                 </button>
               </li>
 
               <li>
-                <button className="dropdown-item" type="button">
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetMonth("February")}
+                >
                   February
                 </button>
               </li>
 
               <li>
-                <button className="dropdown-item" type="button">
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetMonth("March")}
+                >
                   March
                 </button>
               </li>
-
               <li>
-                <button className="dropdown-item" type="button">
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetMonth("April")}
+                >
                   April
                 </button>
               </li>
 
               <li>
-                <button className="dropdown-item" type="button">
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetMonth("May")}
+                >
                   May
                 </button>
               </li>
               <li>
-                <button className="dropdown-item" type="button">
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetMonth("June")}
+                >
                   June
                 </button>
               </li>
+
               <li>
-                <button className="dropdown-item" type="button">
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetMonth("July")}
+                >
                   July
                 </button>
               </li>
 
               <li>
-                <button className="dropdown-item" type="button">
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetMonth("August")}
+                >
                   August
                 </button>
               </li>
+
               <li>
-                <button className="dropdown-item" type="button">
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetMonth("September")}
+                >
                   September
                 </button>
               </li>
+
               <li>
-                <button className="dropdown-item" type="button">
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetMonth("October")}
+                >
                   October
                 </button>
               </li>
               <li>
-                <button className="dropdown-item" type="button">
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetMonth("November")}
+                >
                   November
                 </button>
               </li>
+
               <li>
-                <button className="dropdown-item" type="button">
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetMonth("December")}
+                >
                   December
                 </button>
               </li>
             </ul>
           </div>
           <br></br>
+
           <div className="btn-group justify-content-center">
             <button
               type="button"
@@ -147,28 +207,44 @@ const a25diet = () => {
               data-bs-display="static"
               aria-expanded="false"
             >
-              Please choose the week number for which you want the diet chart
+              {`Week-${weekNumber}`}
             </button>
             <ul className="dropdown-menu dropdown-menu-lg-end">
               <li>
-                <button className="dropdown-item" type="button">
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetWeek(1)}
+                >
                   Week-1
                 </button>
               </li>
 
               <li>
-                <button className="dropdown-item" type="button">
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetWeek(2)}
+                >
                   Week-2
                 </button>
               </li>
 
               <li>
-                <button className="dropdown-item" type="button">
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetWeek(3)}
+                >
                   Week-3
                 </button>
               </li>
               <li>
-                <button className="dropdown-item" type="button">
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetWeek(4)}
+                >
                   Week-4
                 </button>
               </li>
@@ -194,153 +270,24 @@ const a25diet = () => {
               </thead>
 
               <tbody>
-                <tr className="table-light secondary">
-                  <td>1</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="inlineFormCheck"
-                      />
-                    </div>
-                  </td>
-                </tr>
+                {todos.map((todo, todoIndex) => {
+                  let splitTodos = todo.task.split(", ");
 
-                <tr className="table-light secondary">
-                  <td>2</td>
+                  return (
+                    <tr key={todoIndex}>
+                      <td>{todoIndex + 1}</td>
 
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="inlineFormCheck"
-                      />
-                    </div>
-                  </td>
-                </tr>
-
-                <tr className="table-light secondary">
-                  <td>3</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="inlineFormCheck"
-                      />
-                    </div>
-                  </td>
-                </tr>
-
-                <tr className="table-light secondary">
-                  <td>4</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="inlineFormCheck"
-                      />
-                    </div>
-                  </td>
-                </tr>
-
-                <tr className="table-light secondary">
-                  <td>5</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="inlineFormCheck"
-                      />
-                    </div>
-                  </td>
-                </tr>
-
-                <tr className="table-light secondary">
-                  <td>6</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="inlineFormCheck"
-                      />
-                    </div>
-                  </td>
-                </tr>
-
-                <tr className="table-light secondary">
-                  <td>7</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="inlineFormCheck"
-                      />
-                    </div>
-                  </td>
-                </tr>
+                      {splitTodos.map((splitTodo, splitTodoIndex) => (
+                        <td key={splitTodoIndex}>{splitTodo}</td>
+                      ))}
+                      <td>
+                        <div className="form-check">
+                          <input className="form-check-input" type="checkbox" />
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

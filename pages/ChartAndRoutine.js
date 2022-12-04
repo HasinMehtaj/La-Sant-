@@ -30,9 +30,11 @@ const chartandroutine = () => {
                   </Link>
 
                   <div className="mt-5">
-                    <button className="btn btn-dark btn-lg btn-block" type="">
-                      Workout Routine
-                    </button>
+                    <Link href={"/a25workout"}>
+                      <button className="btn btn-dark btn-lg btn-block" type="">
+                        Workout Routine
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>

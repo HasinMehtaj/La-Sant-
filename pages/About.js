@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Navbar from "../components/Navbar";
+import Link from "next/link";
 
 export default function About() {
   return (
@@ -52,9 +53,11 @@ export default function About() {
             <p> progress by viewing reports from the report sections.</p>
 
             <div className="card-text">
-              <button className="btn btn-dark" type="submit">
-                BMI Calculator
-              </button>
+              <Link href={"/BMICalculator"}>
+                <button className="btn btn-dark" type="submit">
+                  BMI Calculator
+                </button>
+              </Link>
             </div>
           </div>
         </div>
