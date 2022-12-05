@@ -6,6 +6,7 @@ import styles from "../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { getbmi } from "../express_api/bmi";
 import { suggestPlan } from "../express_api/diet_api";
+import { getuserInput } from "../express_api/progress_api";
 import format from "date-fns/format";
 
 const a25diet = () => {
@@ -15,6 +16,9 @@ const a25diet = () => {
   const [todos, setTodos] = useState([]);
   // const [month, setMonth] = useState(format(new Date(), "MMMM"));
   const [month, setMonth] = useState("January");
+  // const [todoIndex, checkTodos] = useState([]);
+  // const [plan_id, checkPlan] = useState();
+  // const [year, setYear] = useState();
 
   const handleSetWeek = (weekNumber) => {
     setWeekNumber(weekNumber);
@@ -29,6 +33,18 @@ const a25diet = () => {
     let sliceEnd = month * 28;
     setTodos(plan.todos.slice(sliceStart, sliceEnd));
   };
+
+  // const handlecheckTodos = (todoIndex) => {
+  //   checkTodos(todoIndex);
+  //   if ((progress.todos[todoIndex].isComplete = progress.todos[todoIndex])) {
+  //   } else if (
+  //     (progress.todos[todoIndex].isComplete = !progress.todos[todoIndex])
+  //   ) {
+  //   }
+  //   let sliceStart = (weekNumber - 1) * 7;
+  //   let sliceEnd = weekNumber * 7;
+  //   checkTodos(plan.todos.slice(sliceStart, sliceEnd));
+  // };
 
   useEffect(() => {
     getbmi()
