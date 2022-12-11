@@ -9,6 +9,7 @@ const Login = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const handleLogin = async () => {
     try {
       let data = await login(email, password);
@@ -69,7 +70,10 @@ const Login = () => {
                       &nbsp;Remember password{" "}
                     </label>
                   </div>
-
+                  <h6>
+                    Forgot Password? &nbsp;
+                    <Link href="/forgetpassword">Click here</Link>
+                  </h6>
                   <Link href="/register">
                     <h6 className="mb-3">Create Account </h6>
                   </Link>

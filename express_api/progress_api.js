@@ -1,6 +1,6 @@
 import Cookie from "js-cookie";
 
-const getuserInput = async () => {
+const checkTodos = async () => {
   try {
     const token = Cookie.get("token");
     let res = await fetch("/api/progress/updateTodo", {
@@ -18,4 +18,4 @@ const getuserInput = async () => {
   }
 };
 
-export { getuserInput };
+export { checkTodos };

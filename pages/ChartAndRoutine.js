@@ -23,12 +23,14 @@ const chartandroutine = () => {
                     </label>
                   </div>
 
-                  <button
-                    className="btn btn-dark btn-lg btn-block"
-                    type="submit"
-                  >
-                    Diet Chart
-                  </button>
+                  <Link href={"/a25diet"}>
+                    <button
+                      className="btn btn-dark btn-lg btn-block"
+                      type="submit"
+                    >
+                      Diet Chart
+                    </button>
+                  </Link>
 
                   <div className="mt-5">
                     <Link href={"/a25workout"}>

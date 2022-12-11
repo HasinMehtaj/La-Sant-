@@ -65,6 +65,8 @@ const BMICalculator = () => {
                   >
                     Compute BMI
                   </button>
+                  <br></br>
+                  <br></br>
 
                   <input
                     disabled

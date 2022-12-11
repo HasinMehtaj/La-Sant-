@@ -4,21 +4,20 @@ import Footer from "../components/Footer";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { getbmi } from "../express_api/bmi";
+import { bmi, getbmi } from "../express_api/bmi";
 import { suggestPlan } from "../express_api/diet_api";
-import { getuserInput } from "../express_api/progress_api";
+import { checkTodos } from "../express_api/progress_api";
 import format from "date-fns/format";
 
-const a25diet = () => {
+const a25diet = ({}) => {
   const [BMI, setBMI] = useState(-1);
   const [plan, setPlan] = useState({});
   const [weekNumber, setWeekNumber] = useState(1);
   const [todos, setTodos] = useState([]);
-  // const [month, setMonth] = useState(format(new Date(), "MMMM"));
-  const [month, setMonth] = useState("January");
-  // const [todoIndex, checkTodos] = useState([]);
-  // const [plan_id, checkPlan] = useState();
-  // const [year, setYear] = useState();
+  const [month, setMonth] = useState(format(new Date(), "MMMM"));
+  // const [month, setMonth] = useState("January");
+  const [year, setYear] = useState(format(new Date(), "yyyy"));
+  // const [year, setYear] = useState(2022);
 
   const handleSetWeek = (weekNumber) => {
     setWeekNumber(weekNumber);
@@ -34,16 +33,28 @@ const a25diet = () => {
     setTodos(plan.todos.slice(sliceStart, sliceEnd));
   };
 
-  // const handlecheckTodos = (todoIndex) => {
-  //   checkTodos(todoIndex);
-  //   if ((progress.todos[todoIndex].isComplete = progress.todos[todoIndex])) {
-  //   } else if (
-  //     (progress.todos[todoIndex].isComplete = !progress.todos[todoIndex])
-  //   ) {
+  const handleSetYear = (year) => {
+    setYear(year);
+    let sliceStart = (year - 1) * 355;
+    let sliceEnd = year * 355;
+    setTodos(plan.todos.slice(sliceStart, sliceEnd));
+  };
+
+  // const handleCheckTodos = async () => {
+  //   try {
+  //     let data = await checkTodos(month, year, todos);
+  //     if (!data.error) {
+  //       data.plan = Cookies.set("plan", JSON.stringify(data.plan));
+  //       data.month = setMonth(month);
+  //       data.year = setYear(year);
+  //       let sliceStart = (month - 1) * 28;
+  //       let sliceEnd = 28;
+  //       data.todos = setTodos(plan.todos.slice(sliceStart, sliceEnd));
+  //     }
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.log("checkTodos error", error);
   //   }
-  //   let sliceStart = (weekNumber - 1) * 7;
-  //   let sliceEnd = weekNumber * 7;
-  //   checkTodos(plan.todos.slice(sliceStart, sliceEnd));
   // };
 
   useEffect(() => {
@@ -57,6 +68,7 @@ const a25diet = () => {
               setPlan(dietPlan);
               setTodos(dietPlan.todos.slice(0, 7));
             })
+
             .catch((error) => {
               console.log(error);
             });
@@ -82,7 +94,7 @@ const a25diet = () => {
         <Navbar></Navbar>
 
         <h1 className="text-center">
-          {`Hello there! You are ${bmiComment}, let’s get you a suitable diet`}
+          {`Hello there! You are ${bmiComment}, let's get you a suitable diet`}
           <br />
           <div className="btn-group justify-content-center">
             <button
@@ -298,7 +310,11 @@ const a25diet = () => {
                       ))}
                       <td>
                         <div className="form-check">
-                          <input className="form-check-input" type="checkbox" />
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            // onChange={() => handleCheckTodos()}
+                          />
                         </div>
                       </td>
                     </tr>
