@@ -131,6 +131,118 @@ const a25diet = ({}) => {
         <h1 className="text-center">
           {`Hello there! You are ${bmiComment}, let's get you a suitable diet`}
           <br />
+
+          <div className="btn-group justify-content-center">
+            <button
+              type="button"
+              className="btn btn-dark dropdown-toggle"
+              data-bs-toggle="dropdown"
+              data-bs-display="static"
+              aria-expanded="false"
+            >
+              {`${year}`}
+            </button>
+            <ul className="dropdown-menu dropdown-menu-lg-end">
+              <li>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetYear(2022)}
+                >
+                  2022
+                </button>
+              </li>
+
+              <li>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetYear(2023)}
+                >
+                  2023
+                </button>
+              </li>
+
+              <li>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetYear(2024)}
+                >
+                  2024
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetYear(2025)}
+                >
+                  2025
+                </button>
+              </li>
+
+              <li>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetYear(2026)}
+                >
+                  2026
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetYear(2027)}
+                >
+                  2027
+                </button>
+              </li>
+
+              <li>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetYear(2028)}
+                >
+                  2028
+                </button>
+              </li>
+
+              <li>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetYear(2029)}
+                >
+                  2029
+                </button>
+              </li>
+
+              <li>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetYear(2030)}
+                >
+                  2030
+                </button>
+              </li>
+
+              <li>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetYear(2031)}
+                >
+                  2031
+                </button>
+              </li>
+            </ul>
+          </div>
+          <br></br>
           <div className="btn-group justify-content-center">
             <button
               type="button"

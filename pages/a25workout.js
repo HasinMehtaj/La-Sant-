@@ -6,7 +6,7 @@ import styles from "../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { getbmi } from "../express_api/bmi";
 import { suggestPlan } from "../express_api/workout_api";
-import { checkTodos } from "../express_api/progress_api";
+import { checkTodos, getUserProgress } from "../express_api/progress_api";
 import format from "date-fns/format";
 
 const a25workout = () => {
@@ -56,6 +56,12 @@ const a25workout = () => {
         2022,
         splitTodoIndex + 7 * (weekNumber - 1)
       );
+
+      let planCopy = { ...plan };
+      planCopy.todos[splitTodoIndex + 7 * (weekNumber - 1)].isComplete =
+        !planCopy.todos[splitTodoIndex + 7 * (weekNumber - 1)].isComplete;
+      setPlan(planCopy);
+
       if (!data.error) {
         console.log(data);
       }
@@ -72,8 +78,30 @@ const a25workout = () => {
 
           suggestPlan("Workout", data.BMI)
             .then((workoutPlan) => {
-              setPlan(workoutPlan);
-              setTodos(workoutPlan.todos.slice(0, 7));
+              getUserProgress(
+                workoutPlan._id,
+                monthNameToNumber(month),
+                2022
+              ).then((progress) => {
+                console.log("progress", progress.todos);
+                console.log("workoutPlan.todos", workoutPlan.todos);
+
+                for (
+                  let progressTodoIndex = 0;
+                  progressTodoIndex < progress.todos.length;
+                  progressTodoIndex++
+                ) {
+                  const progressTodo = progress.todos[progressTodoIndex];
+                  if (progressTodo.isComplete) {
+                    workoutPlan.todos[progressTodoIndex].isComplete = true;
+                  } else {
+                    workoutPlan.todos[progressTodoIndex].isComplete = false;
+                  }
+                }
+
+                setPlan(workoutPlan);
+                setTodos(workoutPlan.todos.slice(0, 7));
+              });
             })
             .catch((error) => {
               console.log(error);
@@ -101,6 +129,119 @@ const a25workout = () => {
         <h1 className="text-center">
           {`Hello there! You are ${bmiComment}, let’s get you a suitable workout routine`}
           <br />
+
+          <div className="btn-group justify-content-center">
+            <button
+              type="button"
+              className="btn btn-dark dropdown-toggle"
+              data-bs-toggle="dropdown"
+              data-bs-display="static"
+              aria-expanded="false"
+            >
+              {`${year}`}
+            </button>
+            <ul className="dropdown-menu dropdown-menu-lg-end">
+              <li>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetYear(2022)}
+                >
+                  2022
+                </button>
+              </li>
+
+              <li>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetYear(2023)}
+                >
+                  2023
+                </button>
+              </li>
+
+              <li>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetYear(2024)}
+                >
+                  2024
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetYear(2025)}
+                >
+                  2025
+                </button>
+              </li>
+
+              <li>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetYear(2026)}
+                >
+                  2026
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetYear(2027)}
+                >
+                  2027
+                </button>
+              </li>
+
+              <li>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetYear(2028)}
+                >
+                  2028
+                </button>
+              </li>
+
+              <li>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetYear(2029)}
+                >
+                  2029
+                </button>
+              </li>
+
+              <li>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetYear(2030)}
+                >
+                  2030
+                </button>
+              </li>
+
+              <li>
+                <button
+                  className="dropdown-item"
+                  type="button"
+                  onClick={() => handleSetYear(2031)}
+                >
+                  2031
+                </button>
+              </li>
+            </ul>
+          </div>
+          <br></br>
+
           <div className="btn-group justify-content-center">
             <button
               type="button"
@@ -307,6 +448,7 @@ const a25workout = () => {
                           <input
                             className="form-check-input"
                             type="checkbox"
+                            checked={todo.isComplete}
                             onChange={() => handleCheckTodos(todoIndex)}
                           />
                         </div>

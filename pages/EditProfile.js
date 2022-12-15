@@ -1,11 +1,11 @@
-// import { updateProfile } from "../express_api/updateProfile";
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import Navbar from "../components/Navbar";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const editprofile = () => {
-  // const router = useRouter();
+  const router = useRouter();
   const [username, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -17,6 +17,7 @@ const editprofile = () => {
       username,
       password,
     };
+
     try {
       const token = Cookies.get("token");
       const user = JSON.parse(Cookies.get("user"));
@@ -37,19 +38,6 @@ const editprofile = () => {
       console.log(error);
     }
   };
-
-  // const handleupdateProfile = async () => {
-  //   try {
-  //     let data = await updateProfile(username, email, password);
-  //     if (!data.error) {
-  //       Cookies.get("token", data.token);
-  //       Cookies.get("user", JSON.stringify(data.user));
-  //       router.push("/");
-  //     }
-  //   } catch (error) {
-  //     console.log("updaeProfile error", error);
-  //   }
-  // };
 
   return (
     <>
@@ -105,7 +93,6 @@ const editprofile = () => {
                     className="btn btn-dark btn-lg btn-block"
                     type="submit"
                     onClick={handleSubmit}
-                    // onClick={() => handleupdateProfile()}
                   >
                     Save Changes
                   </button>
