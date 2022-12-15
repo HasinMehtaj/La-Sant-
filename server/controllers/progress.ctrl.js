@@ -62,7 +62,29 @@ const updateProgressTodo = async (req, res) => {
   }
 };
 
+const getUserProgress = async (req, res) => {
+  try {
+    let { plan_id, month, year } = req.body;
+    let user = req.user;
+
+    let progress = await Progress.findOne({
+      month,
+      year,
+      plan_id: plan_id.toString(),
+      user_id: user._id.toString(),
+    });
+
+    res.json(progress);
+  } catch (error) {
+    console.error(
+      "🚀 -> file: progress.ctrl.js:69 -> getUserProgress -> error",
+      error
+    );
+  }
+};
+
 module.exports = {
   createUserProgresses,
   updateProgressTodo,
+  getUserProgress,
 };

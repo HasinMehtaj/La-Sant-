@@ -6,7 +6,7 @@ import styles from "../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { getbmi } from "../express_api/bmi";
 import { suggestPlan } from "../express_api/diet_api";
-import { checkTodos } from "../express_api/progress_api";
+import { checkTodos, getUserProgress } from "../express_api/progress_api";
 import format from "date-fns/format";
 
 const a25diet = ({}) => {
@@ -56,6 +56,12 @@ const a25diet = ({}) => {
         2022,
         splitTodoIndex + 7 * (weekNumber - 1)
       );
+
+      let planCopy = { ...plan };
+      planCopy.todos[splitTodoIndex + 7 * (weekNumber - 1)].isComplete =
+        !planCopy.todos[splitTodoIndex + 7 * (weekNumber - 1)].isComplete;
+      setPlan(planCopy);
+
       if (!data.error) {
         console.log(data);
       }
@@ -72,8 +78,30 @@ const a25diet = ({}) => {
 
           suggestPlan("Diet", data.BMI)
             .then((dietPlan) => {
-              setPlan(dietPlan);
-              setTodos(dietPlan.todos.slice(0, 7));
+              getUserProgress(
+                dietPlan._id,
+                monthNameToNumber(month),
+                2022
+              ).then((progress) => {
+                console.log("progress", progress.todos);
+                console.log("dietPlan.todos", dietPlan.todos);
+
+                for (
+                  let progressTodoIndex = 0;
+                  progressTodoIndex < progress.todos.length;
+                  progressTodoIndex++
+                ) {
+                  const progressTodo = progress.todos[progressTodoIndex];
+                  if (progressTodo.isComplete) {
+                    dietPlan.todos[progressTodoIndex].isComplete = true;
+                  } else {
+                    dietPlan.todos[progressTodoIndex].isComplete = false;
+                  }
+                }
+
+                setPlan(dietPlan);
+                setTodos(dietPlan.todos.slice(0, 7));
+              });
             })
 
             .catch((error) => {
@@ -320,6 +348,7 @@ const a25diet = ({}) => {
                           <input
                             className="form-check-input"
                             type="checkbox"
+                            checked={todo.isComplete}
                             onChange={() => handleCheckTodos(todoIndex)}
                           />
                         </div>

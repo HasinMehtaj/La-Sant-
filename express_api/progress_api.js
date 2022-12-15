@@ -20,4 +20,24 @@ const checkTodos = async (plan_id, month, year, todoIndex) => {
   }
 };
 
-export { checkTodos };
+const getUserProgress = async (plan_id, month, year) => {
+  try {
+    const token = Cookie.get("token");
+    let res = await fetch("/api/progress", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+
+      body: JSON.stringify({ plan_id, month, year }),
+    });
+
+    return await res.json();
+  } catch (error) {
+    console.log("input error", error);
+  }
+};
+
+export { getUserProgress, checkTodos };

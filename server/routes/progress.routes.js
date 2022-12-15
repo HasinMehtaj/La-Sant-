@@ -5,7 +5,10 @@ const Progress = require("../models/progress");
 const {
   createUserProgresses,
   updateProgressTodo,
+  getUserProgress,
 } = require("../controllers/progress.ctrl");
+
+router.post("/api/progress", auth, getUserProgress);
 
 router.post("/api/progress/createProgress", auth, createUserProgresses);
 
