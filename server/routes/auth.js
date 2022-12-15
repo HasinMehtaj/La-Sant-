@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const auth = require("../middleware/auth");
 
 const {
   login,
   register,
-  logout,
   updateProfile,
   // forgetPassword,
   // forgetPasswordEmail,
@@ -15,9 +15,9 @@ router.route("/api/auth/register").post(register);
 
 router.route("/api/auth/login").post(login);
 
-router.route("/api/auth/updateProfile/:_id").put(updateProfile);
+// router.route("/api/auth/updateProfile/:_id").put(updateProfile);
 
-// router.route("/api/auth/logout").get(logout);
+router.put("/api/auth/updateProfile/:_id", auth, updateProfile);
 
 // router.route("/api/auth/forgetPassword").post(forgetPassword);
 

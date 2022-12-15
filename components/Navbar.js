@@ -7,17 +7,17 @@ const Navbar = () => {
   const router = useRouter();
   const [token, setToken] = useState({ value: null });
   const data = Cookies.get("token");
+  // const [username, setName] = useState("");
 
   const logout = () => {
     Cookies.remove("token");
-    router.push("/");
   };
 
   useEffect(() => {
     if (data) {
       setToken({ value: data });
     } else {
-      setToken();
+      setToken({ value: null });
     }
   }, []);
 
@@ -61,44 +61,44 @@ const Navbar = () => {
               <li className="nav-item nav-link active">Track Progress</li>
             </Link>
           </ul>
-          {/* {!token.value && ( */}
-          <Link href={"/Login"}>
-            <button className="btn btn-dark">Login/Signup</button>
-          </Link>
-          {/* )}
-          {token.value && ( */}
-          <div className="btn-group justify-content-center">
-            <button
-              type="button"
-              className="btn btn-dark dropdown-toggle"
-              data-bs-toggle="dropdown"
-              data-bs-display="static"
-              aria-expanded="false"
-            >
-              {`Name`}
-            </button>
+          {!token.value && (
+            <Link href={"/Login"}>
+              <button className="btn btn-dark">Login/Signup</button>
+            </Link>
+          )}
+          {token.value && (
+            <div className="btn-group justify-content-center">
+              <button
+                type="button"
+                className="btn btn-dark dropdown-toggle"
+                data-bs-toggle="dropdown"
+                data-bs-display="static"
+                aria-expanded="false"
+              >
+                {`Name`}
+              </button>
 
-            <ul className="dropdown-menu dropdown-menu-lg-end">
-              <li>
-                <Link href={"/editprofile"}>
-                  <button className="dropdown-item" type="button">
-                    Edit Profile
+              <ul className="dropdown-menu dropdown-menu-lg-end">
+                <li>
+                  <Link href={"/editprofile"}>
+                    <button className="dropdown-item" type="button">
+                      Edit Profile
+                    </button>
+                  </Link>
+                </li>
+
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={logout}
+                  >
+                    Logout
                   </button>
-                </Link>
-              </li>
-
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={logout}
-                >
-                  Logout
-                </button>
-              </li>
-            </ul>
-          </div>
-          {/* )} */}
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </nav>

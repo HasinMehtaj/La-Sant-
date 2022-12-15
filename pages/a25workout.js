@@ -6,6 +6,7 @@ import styles from "../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { getbmi } from "../express_api/bmi";
 import { suggestPlan } from "../express_api/workout_api";
+import { checkTodos } from "../express_api/progress_api";
 import format from "date-fns/format";
 
 const a25workout = () => {
@@ -13,8 +14,10 @@ const a25workout = () => {
   const [plan, setPlan] = useState({});
   const [weekNumber, setWeekNumber] = useState(1);
   const [todos, setTodos] = useState([]);
-  // const [month, setMonth] = useState(format(new Date(), "MMMM"));
-  const [month, setMonth] = useState("January");
+  const [month, setMonth] = useState(format(new Date(), "MMMM"));
+  // const [month, setMonth] = useState("January");
+  const [year, setYear] = useState(format(new Date(), "yyyy"));
+  // const [year, setYear] = useState(2022);
 
   const handleSetWeek = (weekNumber) => {
     setWeekNumber(weekNumber);
@@ -28,6 +31,37 @@ const a25workout = () => {
     let sliceStart = (month - 1) * 28;
     let sliceEnd = month * 28;
     setTodos(plan.todos.slice(sliceStart, sliceEnd));
+  };
+
+  const handleSetYear = (year) => {
+    setYear(year);
+    let sliceStart = (year - 1) * 355;
+    let sliceEnd = year * 355;
+    setTodos(plan.todos.slice(sliceStart, sliceEnd));
+  };
+
+  function monthNameToNumber(monthName) {
+    const date = new Date(`${monthName} 1, 2020`);
+
+    const monthNumber = date.getMonth();
+
+    return monthNumber + 1;
+  }
+
+  const handleCheckTodos = async (splitTodoIndex) => {
+    try {
+      let data = await checkTodos(
+        plan._id,
+        monthNameToNumber(month),
+        2022,
+        splitTodoIndex + 7 * (weekNumber - 1)
+      );
+      if (!data.error) {
+        console.log(data);
+      }
+    } catch (error) {
+      console.log("checkTodos error", error);
+    }
   };
 
   useEffect(() => {
@@ -270,7 +304,11 @@ const a25workout = () => {
                       ))}
                       <td>
                         <div className="form-check">
-                          <input className="form-check-input" type="checkbox" />
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            onChange={() => handleCheckTodos(todoIndex)}
+                          />
                         </div>
                       </td>
                     </tr>

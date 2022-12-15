@@ -4,10 +4,6 @@ const ErrorResponse = require("../utils/errorResponse");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 // const nodemailer = require("nodemailer");
-const JWT_SECRET = process.env.JWT_SECRET;
-const JWT_EXPIRES = process.env.JWT_EXPIRES;
-const JWT_EXPIRATION_NUM = process.env.JWT_EXPIRATION_NUM;
-// const NODE_ENV = process.env.NODE_ENV;
 
 exports.login = async (req, res, next) => {
   const { email, password } = req.body;
@@ -82,8 +78,8 @@ exports.register = async (req, res, next) => {
 };
 
 exports.updateProfile = async (req, res) => {
-  const userId = req.user._id;
-  // const user = await User.findById(req.user._id);
+  const id = req.user._id;
+  const user = await User.findById({ _id: id });
 
   async function hashPassword(password) {
     const salt = await bcrypt.genSalt(10);
@@ -92,33 +88,25 @@ exports.updateProfile = async (req, res) => {
   }
 
   if (user) {
-    user.name = req.body.name || user.name;
+    user.username = req.body.username || user.username;
+    user.email = req.body.email || user.email;
     if (req.body.password) {
       user.password = await hashPassword(req.body.password);
     }
+
     const updatedUser = await user.save();
 
     res.json({
       _id: updatedUser._id,
-      name: updatedUser.username,
+      username: updatedUser.username,
       email: updatedUser.email,
-      token: generateToken(updatedUser._id),
+      // token: generateToken(updatedUser._id),
     });
   } else {
     res.status(404);
     throw new Error("User Not Found");
   }
 };
-
-// exports.logout = async (req, res) => {
-//   const options = {
-//     expires: new Date(Date.now() + 10000),
-//     secure: NODE_ENV === "prodution" ? true : false,
-//     httpOnly: NODE_ENV === "production" ? true : false,
-//   };
-//   res.cookie("jwt", "expiredtoken", options);
-//   res.status(200).json({ status: "success" });
-// };
 
 // exports.forgetPassword = async (req, res) => {
 //   const { email } = req.body;

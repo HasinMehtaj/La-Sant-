@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { bmi, getbmi } from "../express_api/bmi";
+import { getbmi } from "../express_api/bmi";
 import { suggestPlan } from "../express_api/diet_api";
 import { checkTodos } from "../express_api/progress_api";
 import format from "date-fns/format";
@@ -40,22 +40,29 @@ const a25diet = ({}) => {
     setTodos(plan.todos.slice(sliceStart, sliceEnd));
   };
 
-  // const handleCheckTodos = async () => {
-  //   try {
-  //     let data = await checkTodos(month, year, todos);
-  //     if (!data.error) {
-  //       data.plan = Cookies.set("plan", JSON.stringify(data.plan));
-  //       data.month = setMonth(month);
-  //       data.year = setYear(year);
-  //       let sliceStart = (month - 1) * 28;
-  //       let sliceEnd = 28;
-  //       data.todos = setTodos(plan.todos.slice(sliceStart, sliceEnd));
-  //     }
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.log("checkTodos error", error);
-  //   }
-  // };
+  function monthNameToNumber(monthName) {
+    const date = new Date(`${monthName} 1, 2020`);
+
+    const monthNumber = date.getMonth();
+
+    return monthNumber + 1;
+  }
+
+  const handleCheckTodos = async (splitTodoIndex) => {
+    try {
+      let data = await checkTodos(
+        plan._id,
+        monthNameToNumber(month),
+        2022,
+        splitTodoIndex + 7 * (weekNumber - 1)
+      );
+      if (!data.error) {
+        console.log(data);
+      }
+    } catch (error) {
+      console.log("checkTodos error", error);
+    }
+  };
 
   useEffect(() => {
     getbmi()
@@ -313,7 +320,7 @@ const a25diet = ({}) => {
                           <input
                             className="form-check-input"
                             type="checkbox"
-                            // onChange={() => handleCheckTodos()}
+                            onChange={() => handleCheckTodos(todoIndex)}
                           />
                         </div>
                       </td>

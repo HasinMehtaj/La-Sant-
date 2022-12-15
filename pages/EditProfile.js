@@ -2,30 +2,14 @@
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import Navbar from "../components/Navbar";
+import { useRouter } from "next/router";
 
 const editprofile = () => {
+  // const router = useRouter();
   const [username, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [user, setUser] = useState();
-
-  // useEffect(() => {
-  //   const token = Cookies.set("token");
-  //   fetch("/api/auth/updateProfile/:_id", {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: "Bearer " + token,
-  //     },
-  //   })
-  //     .then((response) => {
-  //       return response.json();
-  //     })
-  //     .then((parsed) => {
-  //       setUser(parsed);
-  //       setName(parsed.name);
-  //       setEmail(parsed.email);
-  //     });
-  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,6 +19,7 @@ const editprofile = () => {
     };
     try {
       const token = Cookies.get("token");
+      const user = JSON.parse(Cookies.get("user"));
       let response = await fetch(`/api/auth/updateProfile/${user._id}`, {
         method: "put",
         headers: {
@@ -43,12 +28,28 @@ const editprofile = () => {
         },
         body: JSON.stringify(data),
       });
+
+      console.log("response", response);
       let res = await response.json();
+      console.log("res", res);
       return res;
     } catch (error) {
       console.log(error);
     }
   };
+
+  // const handleupdateProfile = async () => {
+  //   try {
+  //     let data = await updateProfile(username, email, password);
+  //     if (!data.error) {
+  //       Cookies.get("token", data.token);
+  //       Cookies.get("user", JSON.stringify(data.user));
+  //       router.push("/");
+  //     }
+  //   } catch (error) {
+  //     console.log("updaeProfile error", error);
+  //   }
+  // };
 
   return (
     <>
@@ -69,6 +70,8 @@ const editprofile = () => {
                       type="text"
                       id="text"
                       className="form-control form-control-lg"
+                      value={username}
+                      onChange={(event) => setName(event.target.value)}
                     />
                   </div>
 
@@ -80,6 +83,8 @@ const editprofile = () => {
                       type="text"
                       id="text"
                       className="form-control form-control-lg"
+                      value={email}
+                      onChange={(event) => setEmail(event.target.value)}
                     />
                   </div>
 
@@ -91,6 +96,8 @@ const editprofile = () => {
                       type="password"
                       id="typePasswordX-2"
                       className="form-control form-control-lg"
+                      value={password}
+                      onChange={(event) => setPassword(event.target.value)}
                     />
                   </div>
 
@@ -98,6 +105,7 @@ const editprofile = () => {
                     className="btn btn-dark btn-lg btn-block"
                     type="submit"
                     onClick={handleSubmit}
+                    // onClick={() => handleupdateProfile()}
                   >
                     Save Changes
                   </button>

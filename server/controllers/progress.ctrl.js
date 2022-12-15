@@ -52,7 +52,7 @@ const updateProgressTodo = async (req, res) => {
       !progress.todos[todoIndex].isComplete;
 
     await progress.save();
-
+    console.log(progress);
     res.json(progress);
   } catch (error) {
     console.error(
