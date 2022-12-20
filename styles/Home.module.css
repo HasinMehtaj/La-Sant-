@@ -8,7 +8,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .footer {
@@ -35,7 +35,7 @@
 .title a:hover,
 .title a:focus,
 .title a:active {
-  text-decoration: underline;
+  text-decoration: rgb(170, 3, 221)
 }
 
 .title {
@@ -93,13 +93,15 @@
 
 .card h2 {
   margin: 0 0 1rem 0;
-  font-size: 1.5rem;
+  font-size: large;
   font-family: 'Times New Roman', Times, serif;
 }
 
+
+
 .card p {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-family: 'Times New Roman', Times, serif;
   line-height: 1.5;
 }
@@ -116,6 +118,8 @@
   }
 }
 
+
+
 @media (prefers-color-scheme: dark) {
   .card,
   .footer {
@@ -129,6 +133,39 @@
   }
   
 }
+
+.chartBox{
+  height:350px;
+  width:700px;
+  position: relative; 
+  font-family: 'Times New Roman', Times, serif; 
+
+}
+
+.btn{
+  background-color: rgb(163, 97, 218);
+  display: inline-block;
+  color: #FFFFFF;
+  border-radius: 8px;
+  box-sizing: border-box; 
+  cursor: pointer;
+  text-align: center;
+  position: relative; 
+  font-family: 'Times New Roman', Times, serif;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+
 
 .card-img-overlay {
   margin-top: 10rem;

@@ -4,9 +4,10 @@ const Footer = () => {
   return (
     <div>
       <div className="card-footer text-muted bg-light gray">
-        <Link href="/">
-          <div className="text-center">&copy;La Santé 2022</div>
-        </Link>
+        {/* Eat Healthy | Track Progress | Exercise */}
+        <div className="text-center">
+          <Link href="/"> &copy;La Santé 2022</Link>
+        </div>
       </div>
     </div>
   );

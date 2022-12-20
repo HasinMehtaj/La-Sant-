@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { getbmi } from "../express_api/bmi";
@@ -53,7 +52,7 @@ const a25diet = ({}) => {
       let data = await checkTodos(
         plan._id,
         monthNameToNumber(month),
-        2022,
+        year,
         splitTodoIndex + 7 * (weekNumber - 1)
       );
 
@@ -81,7 +80,8 @@ const a25diet = ({}) => {
               getUserProgress(
                 dietPlan._id,
                 monthNameToNumber(month),
-                2022
+                year
+                // make the year dynamic
               ).then((progress) => {
                 console.log("progress", progress.todos);
                 console.log("dietPlan.todos", dietPlan.todos);
@@ -129,301 +129,308 @@ const a25diet = ({}) => {
         <Navbar></Navbar>
 
         <h1 className="text-center">
-          {`Hello there! You are ${bmiComment}, let's get you a suitable diet`}
+          {" "}
+          <b>
+            {`Hello there! You are ${bmiComment}, let's get you a suitable diet`}
+          </b>
           <br />
+          <div className={styles.btn}>
+            <div className="btn-group justify-content-center">
+              <button
+                type="button"
+                className="btn dropdown-toggle"
+                data-bs-toggle="dropdown"
+                data-bs-display="static"
+                aria-expanded="false"
+              >
+                {`${year}`}
+              </button>
+              <ul className="dropdown-menu dropdown-menu-lg-end">
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetYear(2022)}
+                  >
+                    2022
+                  </button>
+                </li>
 
-          <div className="btn-group justify-content-center">
-            <button
-              type="button"
-              className="btn btn-dark dropdown-toggle"
-              data-bs-toggle="dropdown"
-              data-bs-display="static"
-              aria-expanded="false"
-            >
-              {`${year}`}
-            </button>
-            <ul className="dropdown-menu dropdown-menu-lg-end">
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetYear(2022)}
-                >
-                  2022
-                </button>
-              </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetYear(2023)}
+                  >
+                    2023
+                  </button>
+                </li>
 
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetYear(2023)}
-                >
-                  2023
-                </button>
-              </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetYear(2024)}
+                  >
+                    2024
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetYear(2025)}
+                  >
+                    2025
+                  </button>
+                </li>
 
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetYear(2024)}
-                >
-                  2024
-                </button>
-              </li>
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetYear(2025)}
-                >
-                  2025
-                </button>
-              </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetYear(2026)}
+                  >
+                    2026
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetYear(2027)}
+                  >
+                    2027
+                  </button>
+                </li>
 
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetYear(2026)}
-                >
-                  2026
-                </button>
-              </li>
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetYear(2027)}
-                >
-                  2027
-                </button>
-              </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetYear(2028)}
+                  >
+                    2028
+                  </button>
+                </li>
 
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetYear(2028)}
-                >
-                  2028
-                </button>
-              </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetYear(2029)}
+                  >
+                    2029
+                  </button>
+                </li>
 
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetYear(2029)}
-                >
-                  2029
-                </button>
-              </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetYear(2030)}
+                  >
+                    2030
+                  </button>
+                </li>
 
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetYear(2030)}
-                >
-                  2030
-                </button>
-              </li>
-
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetYear(2031)}
-                >
-                  2031
-                </button>
-              </li>
-            </ul>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetYear(2031)}
+                  >
+                    2031
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
-          <br></br>
-          <div className="btn-group justify-content-center">
-            <button
-              type="button"
-              className="btn btn-dark dropdown-toggle"
-              data-bs-toggle="dropdown"
-              data-bs-display="static"
-              aria-expanded="false"
-            >
-              {`${month}`}
-            </button>
-            <ul className="dropdown-menu dropdown-menu-lg-end">
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetMonth("January")}
-                >
-                  January
-                </button>
-              </li>
+          <br />
+          <div className={styles.btn}>
+            <div className="btn-group ">
+              <button
+                type="button"
+                className="btn  dropdown-toggle"
+                data-bs-toggle="dropdown"
+                data-bs-display="static"
+                aria-expanded="false"
+              >
+                {`${month}`}
+              </button>
+              <ul className="dropdown-menu dropdown-menu-lg-end">
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetMonth("January")}
+                  >
+                    January
+                  </button>
+                </li>
 
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetMonth("February")}
-                >
-                  February
-                </button>
-              </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetMonth("February")}
+                  >
+                    February
+                  </button>
+                </li>
 
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetMonth("March")}
-                >
-                  March
-                </button>
-              </li>
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetMonth("April")}
-                >
-                  April
-                </button>
-              </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetMonth("March")}
+                  >
+                    March
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetMonth("April")}
+                  >
+                    April
+                  </button>
+                </li>
 
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetMonth("May")}
-                >
-                  May
-                </button>
-              </li>
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetMonth("June")}
-                >
-                  June
-                </button>
-              </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetMonth("May")}
+                  >
+                    May
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetMonth("June")}
+                  >
+                    June
+                  </button>
+                </li>
 
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetMonth("July")}
-                >
-                  July
-                </button>
-              </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetMonth("July")}
+                  >
+                    July
+                  </button>
+                </li>
 
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetMonth("August")}
-                >
-                  August
-                </button>
-              </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetMonth("August")}
+                  >
+                    August
+                  </button>
+                </li>
 
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetMonth("September")}
-                >
-                  September
-                </button>
-              </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetMonth("September")}
+                  >
+                    September
+                  </button>
+                </li>
 
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetMonth("October")}
-                >
-                  October
-                </button>
-              </li>
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetMonth("November")}
-                >
-                  November
-                </button>
-              </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetMonth("October")}
+                  >
+                    October
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetMonth("November")}
+                  >
+                    November
+                  </button>
+                </li>
 
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetMonth("December")}
-                >
-                  December
-                </button>
-              </li>
-            </ul>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetMonth("December")}
+                  >
+                    December
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
-          <br></br>
+          <br />
+          <div className={styles.btn}>
+            <div className="btn-group">
+              <button
+                type="button"
+                className="btn dropdown-toggle"
+                data-bs-toggle="dropdown"
+                data-bs-display="static"
+                aria-expanded="false"
+              >
+                {`Week-${weekNumber}`}
+              </button>
+              <ul className="dropdown-menu dropdown-menu-lg-end">
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetWeek(1)}
+                  >
+                    Week-1
+                  </button>
+                </li>
 
-          <div className="btn-group justify-content-center">
-            <button
-              type="button"
-              className="btn btn-dark dropdown-toggle"
-              data-bs-toggle="dropdown"
-              data-bs-display="static"
-              aria-expanded="false"
-            >
-              {`Week-${weekNumber}`}
-            </button>
-            <ul className="dropdown-menu dropdown-menu-lg-end">
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetWeek(1)}
-                >
-                  Week-1
-                </button>
-              </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetWeek(2)}
+                  >
+                    Week-2
+                  </button>
+                </li>
 
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetWeek(2)}
-                >
-                  Week-2
-                </button>
-              </li>
-
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetWeek(3)}
-                >
-                  Week-3
-                </button>
-              </li>
-              <li>
-                <button
-                  className="dropdown-item"
-                  type="button"
-                  onClick={() => handleSetWeek(4)}
-                >
-                  Week-4
-                </button>
-              </li>
-            </ul>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetWeek(3)}
+                  >
+                    Week-3
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSetWeek(4)}
+                  >
+                    Week-4
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
         </h1>
         <div className="bg-light grey">

@@ -1,15 +1,17 @@
 import Head from "next/head";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <>
-      <Navbar></Navbar>
       <div className={styles.main}>
-        <div className="card bg-light grey text-dark">
+        <Navbar></Navbar>
+
+        <div className="card bg-light grey text-dark justify-content-center">
           <Image
             src="/HomepageImage.jpg"
             width={1800}
@@ -44,12 +46,16 @@ export default function Home() {
               for.
             </p>
             <div className="card-text">
-              <button className="btn btn-dark" type="submit">
-                BMI Calculator
-              </button>
+              <Link href={"/BMICalculator"}>
+                <button className="btn btn-dark" type="submit">
+                  BMI Calculator
+                </button>
+              </Link>
             </div>
           </div>
         </div>
+
+        <Footer></Footer>
       </div>
     </>
   );

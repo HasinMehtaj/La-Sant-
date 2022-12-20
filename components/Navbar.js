@@ -2,6 +2,7 @@ import Cookies from "js-cookie";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import styles from "../styles/Home.module.css";
 
 const Navbar = () => {
   const router = useRouter();
@@ -11,6 +12,7 @@ const Navbar = () => {
 
   const logout = () => {
     Cookies.remove("token");
+    router.push("/");
   };
 
   useEffect(() => {
@@ -24,9 +26,11 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light grey">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          La Sante
-        </a>
+        <b>
+          <a className="navbar-brand" href="#">
+            La Santé
+          </a>
+        </b>
 
         <button
           className="navbar-toggler"
@@ -42,24 +46,66 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <Link href={"/"}>
-              <li className="nav-item nav-link active">Home</li>
+              <button className="btn btn-light">Home</button>
             </Link>
 
             <Link href={"/About"}>
-              <li className="nav-item nav-link active">About</li>
+              <button className="btn btn-light">About</button>
             </Link>
 
             <Link href={"/BMICalculator"}>
-              <li className="nav-item nav-link active">BMI Calculator</li>
+              <button className="btn btn-light">BMI Calculator</button>
             </Link>
 
-            <Link href={"/ChartAndRoutine"}>
-              <li className="nav-item nav-link active">Chart and Routine</li>
-            </Link>
+            <div className="btn-group justify-content-center">
+              <button
+                type="button"
+                className="btn btn-light dropdown-toggle"
+                data-bs-toggle="dropdown"
+                data-bs-display="static"
+                aria-expanded="false"
+              >
+                Chart and Routine
+              </button>
 
-            <Link href={"/TrackProgress"}>
-              <li className="nav-item nav-link active">Track Progress</li>
-            </Link>
+              <ul className="dropdown-menu dropdown-menu-lg-end">
+                <li>
+                  <Link href={"/a25diet"}>
+                    <button className="btn btn-light">Diet Chart</button>
+                  </Link>
+                </li>
+                <Link href={"/a25workout"}>
+                  <li>
+                    <button className="btn btn-light">Workout Routine</button>
+                  </li>
+                </Link>
+              </ul>
+            </div>
+
+            <div className="btn-group justify-content-center">
+              <button
+                type="button"
+                className="btn btn-light dropdown-toggle"
+                data-bs-toggle="dropdown"
+                data-bs-display="static"
+                aria-expanded="false"
+              >
+                Track Progress
+              </button>
+
+              <ul className="dropdown-menu dropdown-menu-lg-end">
+                <li>
+                  <Link href={"/report_diet"}>
+                    <button className="btn btn-light">Report-Diet</button>
+                  </Link>
+                </li>
+                <Link href={"/report_workout"}>
+                  <li>
+                    <button className="btn btn-light">Report-Workout</button>
+                  </li>
+                </Link>
+              </ul>
+            </div>
           </ul>
           {!token.value && (
             <Link href={"/Login"}>
@@ -81,9 +127,7 @@ const Navbar = () => {
               <ul className="dropdown-menu dropdown-menu-lg-end">
                 <li>
                   <Link href={"/editprofile"}>
-                    <button className="dropdown-item" type="button">
-                      Edit Profile
-                    </button>
+                    <button className="btn btn-light">Edit Profile</button>
                   </Link>
                 </li>
 

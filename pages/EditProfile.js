@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
+import styles from "../styles/Home.module.css";
 import Cookies from "js-cookie";
 import Navbar from "../components/Navbar";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Footer from "../components/Footer";
 
 const editprofile = () => {
   const router = useRouter();
   const [username, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [user, setUser] = useState();
+  const [confirmpassword, setConfirmPassword] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -89,19 +91,37 @@ const editprofile = () => {
                     />
                   </div>
 
-                  <button
-                    className="btn btn-dark btn-lg btn-block"
-                    type="submit"
-                    onClick={handleSubmit}
-                  >
-                    Save Changes
-                  </button>
+                  <div className="form-outline mb-3">
+                    <label className="form-label" htmlFor="typePasswordX-2">
+                      Confirm Password
+                    </label>
+                    <input
+                      type="password"
+                      id="typePasswordX-2"
+                      className="form-control form-control-lg"
+                      value={confirmpassword}
+                      onChange={(event) =>
+                        setConfirmPassword(event.target.value)
+                      }
+                    />
+                  </div>
+
+                  <div className={styles.btn}>
+                    <button
+                      className="btn btn-lg btn-block"
+                      type="submit"
+                      onClick={handleSubmit}
+                    >
+                      Save Changes
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+      <Footer></Footer>
     </>
   );
 };
