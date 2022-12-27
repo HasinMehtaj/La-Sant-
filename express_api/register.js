@@ -19,4 +19,20 @@ const register = async (username, email, password) => {
   }
 };
 
-export { register };
+const getusername = async () => {
+  try {
+    const token = Cookie.get("token");
+    let res = await fetch("/api/auth/register", {
+      method: "get",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    });
+    return await res.json();
+  } catch (error) {
+    console.log("username error", error);
+  }
+};
+export { register, getusername };

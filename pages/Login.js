@@ -18,7 +18,7 @@ const Login = () => {
       if (!data.error) {
         Cookies.set("token", data.token);
         Cookies.set("user", JSON.stringify(data.user));
-        router.push("/BMICalculator");
+        router.push("/");
       }
     } catch (error) {
       console.log("login error", error);

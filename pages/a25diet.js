@@ -7,6 +7,8 @@ import { getbmi } from "../express_api/bmi";
 import { suggestPlan } from "../express_api/diet_api";
 import { checkTodos, getUserProgress } from "../express_api/progress_api";
 import format from "date-fns/format";
+import { Bar } from "react-chartjs-2";
+import Chart from "chart.js/auto";
 
 const a25diet = ({}) => {
   const [BMI, setBMI] = useState(-1);
@@ -17,6 +19,7 @@ const a25diet = ({}) => {
   // const [month, setMonth] = useState("January");
   const [year, setYear] = useState(format(new Date(), "yyyy"));
   // const [year, setYear] = useState(2022);
+  const [chartdata, setChartData] = useState([0, 0, 0, 0]);
 
   const handleSetWeek = (weekNumber) => {
     setWeekNumber(weekNumber);
@@ -69,6 +72,73 @@ const a25diet = ({}) => {
     }
   };
 
+  const data = {
+    labels: ["Week-1", "Week-2", "Week-3", "Week-4"],
+    datasets: [
+      {
+        label: "Tasks completed per week",
+        borderRadius: 5,
+
+        data: chartdata,
+        // [todos.isComplete],
+        backgroundColor: "rgb(163, 97, 218)",
+        barThickness: 6,
+        barPercentage: 0.5,
+        maxBarThickness: 8,
+        minBarLenght: 2,
+        tension: 1,
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const config = {
+    type: "bar",
+    date: data,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  };
+  const options = {
+    plugins: {
+      legend: {
+        position: "top",
+        align: "start",
+        labels: {
+          boxWidth: 3,
+          usePointStyle: true,
+          pointStyle: "circle",
+        },
+        title: {
+          text: "Progress Report",
+          display: true,
+          color: "#000",
+          font: {
+            size: 30,
+          },
+        },
+      },
+    },
+    scales: {
+      xAxis: {
+        display: false,
+      },
+      yAxis: {
+        max: 1,
+      },
+    },
+    elements: {
+      bar: {
+        barPercentage: 0.3,
+        categoryPercentage: 1,
+      },
+    },
+  };
+
   useEffect(() => {
     getbmi()
       .then((data) => {
@@ -86,12 +156,56 @@ const a25diet = ({}) => {
                 console.log("progress", progress.todos);
                 console.log("dietPlan.todos", dietPlan.todos);
 
+                //0-6, 7-13, 14-20, 21-27
+                let yAxisdata = [7, 7, 7, 7];
+
+                for (
+                  let progressTodoIndex = 0;
+                  progressTodoIndex <= 6;
+                  progressTodoIndex++
+                ) {
+                  if (!progress.todos[progressTodoIndex].isComplete) {
+                    yAxisdata[0] -= 1;
+                  }
+                }
+                for (
+                  let progressTodoIndex = 7;
+                  progressTodoIndex <= 13;
+                  progressTodoIndex++
+                ) {
+                  if (!progress.todos[progressTodoIndex].isComplete) {
+                    yAxisdata[1] -= 1;
+                  }
+                }
+                for (
+                  let progressTodoIndex = 14;
+                  progressTodoIndex <= 20;
+                  progressTodoIndex++
+                ) {
+                  if (!progress.todos[progressTodoIndex].isComplete) {
+                    yAxisdata[2] -= 1;
+                  }
+                }
+                for (
+                  let progressTodoIndex = 21;
+                  progressTodoIndex <= 27;
+                  progressTodoIndex++
+                ) {
+                  if (!progress.todos[progressTodoIndex].isComplete) {
+                    yAxisdata[3] -= 1;
+                  }
+                }
+                yAxisdata[4] = 7;
+                setChartData(yAxisdata);
                 for (
                   let progressTodoIndex = 0;
                   progressTodoIndex < progress.todos.length;
                   progressTodoIndex++
                 ) {
                   const progressTodo = progress.todos[progressTodoIndex];
+                  //
+
+                  //
                   if (progressTodo.isComplete) {
                     dietPlan.todos[progressTodoIndex].isComplete = true;
                   } else {
@@ -127,7 +241,6 @@ const a25diet = ({}) => {
     <>
       <div className={styles.main}>
         <Navbar></Navbar>
-
         <h1 className="text-center">
           {" "}
           <b>
@@ -477,6 +590,15 @@ const a25diet = ({}) => {
                 })}
               </tbody>
             </table>
+          </div>
+        </div>
+        <br />
+
+        <div className={styles.main}>
+          <div className={styles.chartBox}>
+            <div className="justify-content-center">
+              <Bar data={data} width={400} height={400} option={options}></Bar>
+            </div>
           </div>
         </div>
 

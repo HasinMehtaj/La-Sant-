@@ -5,31 +5,42 @@ import { Bar } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 
 const report_diet = () => {
+  let i = 0;
+  let sum = 0;
+  for (i = 0; i < 4; i++) {
+    sum = +i;
+  }
   const data = {
     labels: ["Week-1", "Week-2", "Week-3", "Week-4"],
     datasets: [
       {
         label: "Tasks completed per week",
         borderRadius: 5,
-        data: [1, 5, 3, 7],
+
+        data: [4, 5, 3, 2],
         backgroundColor: "rgb(163, 97, 218)",
-        barThickness: 10,
+        barThickness: 6,
         barPercentage: 0.5,
-        maxBarThickness: 10,
-        minBarLenght: 1,
+        maxBarThickness: 8,
+        minBarLenght: 2,
         tension: 1,
+        borderWidth: 1,
       },
     ],
   };
 
-  // const config = {
-  //   type: "bar",
-  //   data,
-  //   options: {
-  //     scales: {
-  //       y: {
-  //         beginAtZero: true,
-  //         ticks: {
+  const config = {
+    type: "bar",
+    date: data,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  };
+  // ticks: {
   //           maxTicksLimit: 4,
   //           callback: (context, index) => {
   //             console.log(context);

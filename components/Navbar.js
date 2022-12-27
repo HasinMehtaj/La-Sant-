@@ -8,7 +8,6 @@ const Navbar = () => {
   const router = useRouter();
   const [token, setToken] = useState({ value: null });
   const data = Cookies.get("token");
-  // const [username, setName] = useState("");
 
   const logout = () => {
     Cookies.remove("token");
@@ -20,6 +19,10 @@ const Navbar = () => {
       setToken({ value: data });
     } else {
       setToken({ value: null });
+    }
+
+    if (token.value) {
+      getname(username);
     }
   }, []);
 
@@ -45,73 +48,66 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <Link href={"/"}>
-              <button className="btn btn-light">Home</button>
-            </Link>
+            {!token.value && (
+              <button className="btn btn-light disabled">Home</button>
+            )}
 
-            <Link href={"/About"}>
-              <button className="btn btn-light">About</button>
-            </Link>
+            {token.value && (
+              <Link href={"/"}>
+                <button className="btn btn-light">Home</button>
+              </Link>
+            )}
 
-            <Link href={"/BMICalculator"}>
-              <button className="btn btn-light">BMI Calculator</button>
-            </Link>
-
-            <div className="btn-group justify-content-center">
-              <button
-                type="button"
-                className="btn btn-light dropdown-toggle"
-                data-bs-toggle="dropdown"
-                data-bs-display="static"
-                aria-expanded="false"
-              >
-                Chart and Routine
+            {!token.value && (
+              <button className="btn btn-light disabled">About</button>
+            )}
+            {token.value && (
+              <Link href={"/About"}>
+                <button className="btn btn-light">About</button>
+              </Link>
+            )}
+            {!token.value && (
+              <button className="btn btn-light disabled">BMI Calculator</button>
+            )}
+            {token.value && (
+              <Link href={"/BMICalculator"}>
+                <button className="btn btn-light">BMI Calculator</button>
+              </Link>
+            )}
+            {!token.value && (
+              <button className="btn btn-light disabled">
+                Plans and Progress
               </button>
+            )}
 
-              <ul className="dropdown-menu dropdown-menu-lg-end">
-                <li>
-                  <Link href={"/a25diet"}>
-                    <button className="btn btn-light">Diet Chart</button>
-                  </Link>
-                </li>
-                <Link href={"/a25workout"}>
+            {token.value && (
+              <div className="btn-group justify-content-center">
+                <button
+                  type="button"
+                  className="btn btn-light dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  data-bs-display="static"
+                  aria-expanded="false"
+                >
+                  Plans and Progress
+                </button>
+
+                <ul className="dropdown-menu dropdown-menu-lg-end">
                   <li>
-                    <button className="btn btn-light">Workout Routine</button>
+                    <Link href={"/a25diet"}>
+                      <button className="btn btn-light">Diet Chart</button>
+                    </Link>
                   </li>
-                </Link>
-              </ul>
-            </div>
-
-            <div className="btn-group justify-content-center">
-              <button
-                type="button"
-                className="btn btn-light dropdown-toggle"
-                data-bs-toggle="dropdown"
-                data-bs-display="static"
-                aria-expanded="false"
-              >
-                Track Progress
-              </button>
-
-              <ul className="dropdown-menu dropdown-menu-lg-end">
-                <li>
-                  <Link href={"/report_diet"}>
-                    <button className="btn btn-light">Report-Diet</button>
+                  <Link href={"/a25workout"}>
+                    <li>
+                      <button className="btn btn-light">Workout Routine</button>
+                    </li>
                   </Link>
-                </li>
-                <Link href={"/report_workout"}>
-                  <li>
-                    <button className="btn btn-light">Report-Workout</button>
-                  </li>
-                </Link>
-              </ul>
-            </div>
+                </ul>
+              </div>
+            )}
           </ul>
-          {!token.value && (
-            <Link href={"/Login"}>
-              <button className="btn btn-dark">Login/Signup</button>
-            </Link>
-          )}
+
           {token.value && (
             <div className="btn-group justify-content-center">
               <button
@@ -121,6 +117,7 @@ const Navbar = () => {
                 data-bs-display="static"
                 aria-expanded="false"
               >
+                {/* {`${username}`} */}
                 {`Name`}
               </button>
 
@@ -142,6 +139,11 @@ const Navbar = () => {
                 </li>
               </ul>
             </div>
+          )}
+          {!token.value && (
+            <Link href={"/Login"}>
+              <button className="btn btn-dark">Login/Signup</button>
+            </Link>
           )}
         </div>
       </div>
