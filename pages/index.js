@@ -33,18 +33,27 @@ export default function Home() {
             <br></br>
             <br></br>
             <br></br>
-            <br></br>
             <b>
               <h1 className="card-title">Stay Healthy!</h1>
             </b>
             <div className="card-text margin-top">
-              Being regular in maintaining the diet chart and workout routine
-              and reducing heart attack risk that
+              <p>
+                Being regular in maintaining the diet chart and workout routine
+                and reducing heart attack risk
+              </p>
+              <p>
+                has become an unwanted trend is what you need us for. Click on
+                the link below to get your
+              </p>
+              <p>
+                Body Mass Index (BMI) calculated and use it to get a suitable
+                diet chart and workout routine to get fit.
+              </p>
+              <p>
+                Always remember, no matter what you do, discipline and
+                consistency is always the key.
+              </p>
             </div>
-            <p>
-              needless to say has become an unwanted trend is what you need us
-              for.
-            </p>
             <div className="card-text">
               <Link href={"/BMICalculator"}>
                 <button className="btn btn-dark" type="submit">

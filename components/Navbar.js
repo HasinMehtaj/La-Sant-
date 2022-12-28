@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "../styles/Home.module.css";
+import { FaUserAlt } from "react-icons/fa";
 
 const Navbar = () => {
   const router = useRouter();
@@ -117,8 +118,7 @@ const Navbar = () => {
                 data-bs-display="static"
                 aria-expanded="false"
               >
-                {/* {`${username}`} */}
-                {`Name`}
+                <FaUserAlt className={styles.icon}></FaUserAlt>
               </button>
 
               <ul className="dropdown-menu dropdown-menu-lg-end">
