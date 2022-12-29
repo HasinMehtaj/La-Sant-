@@ -4,8 +4,25 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
+import Cookies from "js-cookie";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [token, setToken] = useState({ value: null });
+  const data = Cookies.get("token");
+
+  useEffect(() => {
+    if (data) {
+      setToken({ value: data });
+    } else {
+      setToken({ value: null });
+    }
+
+    if (token.value) {
+      getname(username);
+    }
+  }, []);
+
   return (
     <>
       <div className={styles.main}>
@@ -55,11 +72,19 @@ export default function Home() {
               </p>
             </div>
             <div className="card-text">
-              <Link href={"/BMICalculator"}>
+              {token.value && (
+                <Link href={"/BMICalculator"}>
+                  <button className="btn btn-dark" type="submit">
+                    BMI Calculator
+                  </button>
+                </Link>
+              )}
+
+              {!token.value && (
                 <button className="btn btn-dark" type="submit">
                   BMI Calculator
                 </button>
-              </Link>
+              )}
             </div>
           </div>
         </div>

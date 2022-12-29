@@ -61,7 +61,6 @@ const BMICalculator = () => {
                     <div className={styles.btn}>
                       <button
                         className="btn 
-                   
                      btn-lg btn-block"
                         onClick={() => handleBMICalculator()}
                       >

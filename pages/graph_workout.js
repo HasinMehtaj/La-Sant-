@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { getbmi } from "../express_api/bmi";
 import { suggestPlan } from "../express_api/workout_api";
 import { checkTodos, getUserProgress } from "../express_api/progress_api";
 import format from "date-fns/format";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 
-const a25workout = () => {
+const graph_workout = ({}) => {
   const [BMI, setBMI] = useState(-1);
   const [plan, setPlan] = useState({});
   const [weekNumber, setWeekNumber] = useState(1);
@@ -56,7 +55,7 @@ const a25workout = () => {
       let data = await checkTodos(
         plan._id,
         monthNameToNumber(month),
-        2022,
+        year,
         splitTodoIndex + 7 * (weekNumber - 1)
       );
 
@@ -77,24 +76,22 @@ const a25workout = () => {
     labels: ["Week-1", "Week-2", "Week-3", "Week-4"],
     datasets: [
       {
-        label: "Tasks completed per week",
-        borderRadius: 5,
+        label: "Calorie lost per week",
 
         data: chartdata,
         // [todos.isComplete],
         backgroundColor: "rgb(163, 97, 218)",
-        barThickness: 6,
-        barPercentage: 0.5,
-        maxBarThickness: 8,
-        minBarLenght: 2,
-        tension: 1,
-        borderWidth: 1,
+        lineThickness: 10,
+        linePercentage: 0.5,
+        maxLineThickness: 8,
+        minLineThickness: 2,
+        borderWidth: 7,
       },
     ],
   };
 
   const config = {
-    type: "bar",
+    type: "line",
     date: data,
     options: {
       scales: {
@@ -110,9 +107,7 @@ const a25workout = () => {
         position: "top",
         align: "start",
         labels: {
-          boxWidth: 3,
           usePointStyle: true,
-          pointStyle: "circle",
         },
         title: {
           text: "Progress Report",
@@ -133,8 +128,8 @@ const a25workout = () => {
       },
     },
     elements: {
-      bar: {
-        barPercentage: 0.3,
+      line: {
+        linePercentage: 0.3,
         categoryPercentage: 1,
       },
     },
@@ -151,58 +146,67 @@ const a25workout = () => {
               getUserProgress(
                 workoutPlan._id,
                 monthNameToNumber(month),
-                2022
+                year
+                // make the year dynamic
               ).then((progress) => {
                 console.log("progress", progress.todos);
                 console.log("workoutPlan.todos", workoutPlan.todos);
 
                 //0-6, 7-13, 14-20, 21-27
-                let yAxisdata = [7, 7, 7, 7];
+                let yAxisdata = [0, 0, 0, 0];
+
                 for (
                   let progressTodoIndex = 0;
                   progressTodoIndex <= 6;
                   progressTodoIndex++
                 ) {
-                  if (!progress.todos[progressTodoIndex].isComplete) {
-                    yAxisdata[0] -= 1;
+                  if (progress.todos[progressTodoIndex].isComplete) {
+                    yAxisdata[0] += 1;
                   }
                 }
+                yAxisdata[0] = (2000 / 7) * yAxisdata[0];
                 for (
                   let progressTodoIndex = 7;
                   progressTodoIndex <= 13;
                   progressTodoIndex++
                 ) {
-                  if (!progress.todos[progressTodoIndex].isComplete) {
-                    yAxisdata[1] -= 1;
+                  if (progress.todos[progressTodoIndex].isComplete) {
+                    yAxisdata[1] += 1;
                   }
                 }
+                yAxisdata[1] = (2000 / 7) * yAxisdata[1];
                 for (
                   let progressTodoIndex = 14;
                   progressTodoIndex <= 20;
                   progressTodoIndex++
                 ) {
-                  if (!progress.todos[progressTodoIndex].isComplete) {
-                    yAxisdata[2] -= 1;
+                  if (progress.todos[progressTodoIndex].isComplete) {
+                    yAxisdata[2] += 1;
                   }
                 }
+                yAxisdata[2] = (2000 / 7) * yAxisdata[2];
                 for (
                   let progressTodoIndex = 21;
                   progressTodoIndex <= 27;
                   progressTodoIndex++
                 ) {
-                  if (!progress.todos[progressTodoIndex].isComplete) {
-                    yAxisdata[3] -= 1;
+                  if (progress.todos[progressTodoIndex].isComplete) {
+                    yAxisdata[3] += 1;
                   }
                 }
+                yAxisdata[3] = (2000 / 7) * yAxisdata[3];
+                yAxisdata[4] = 2000;
+                yAxisdata[5] = 0;
                 setChartData(yAxisdata);
-                yAxisdata[4] = 7;
-
                 for (
                   let progressTodoIndex = 0;
                   progressTodoIndex < progress.todos.length;
                   progressTodoIndex++
                 ) {
                   const progressTodo = progress.todos[progressTodoIndex];
+                  //
+
+                  //
                   if (progressTodo.isComplete) {
                     workoutPlan.todos[progressTodoIndex].isComplete = true;
                   } else {
@@ -214,6 +218,7 @@ const a25workout = () => {
                 setTodos(workoutPlan.todos.slice(0, 7));
               });
             })
+
             .catch((error) => {
               console.log(error);
             });
@@ -238,12 +243,11 @@ const a25workout = () => {
       <div className={styles.main}>
         <Navbar></Navbar>
         <h1 className="text-center">
+          {" "}
           <b>
-            {" "}
-            {`Hello there! You are ${bmiComment}, let’s get you a suitable workout routine`}
+            {`Hello there! You are ${bmiComment}, let's get you a suitable workout routine`}
           </b>
           <br />
-
           <div className={styles.btn}>
             <div className="btn-group justify-content-center">
               <button
@@ -356,13 +360,12 @@ const a25workout = () => {
               </ul>
             </div>
           </div>
-          <br></br>
-
+          <br />
           <div className={styles.btn}>
-            <div className="btn-group justify-content-center">
+            <div className="btn-group ">
               <button
                 type="button"
-                className="btn dropdown-toggle"
+                className="btn  dropdown-toggle"
                 data-bs-toggle="dropdown"
                 data-bs-display="static"
                 aria-expanded="false"
@@ -399,7 +402,6 @@ const a25workout = () => {
                     March
                   </button>
                 </li>
-
                 <li>
                   <button
                     className="dropdown-item"
@@ -414,7 +416,7 @@ const a25workout = () => {
                   <button
                     className="dropdown-item"
                     type="button"
-                    onClick={() => handleSetMonth("Mayy")}
+                    onClick={() => handleSetMonth("May")}
                   >
                     May
                   </button>
@@ -428,6 +430,7 @@ const a25workout = () => {
                     June
                   </button>
                 </li>
+
                 <li>
                   <button
                     className="dropdown-item"
@@ -447,6 +450,7 @@ const a25workout = () => {
                     August
                   </button>
                 </li>
+
                 <li>
                   <button
                     className="dropdown-item"
@@ -456,6 +460,7 @@ const a25workout = () => {
                     September
                   </button>
                 </li>
+
                 <li>
                   <button
                     className="dropdown-item"
@@ -474,6 +479,7 @@ const a25workout = () => {
                     November
                   </button>
                 </li>
+
                 <li>
                   <button
                     className="dropdown-item"
@@ -486,11 +492,9 @@ const a25workout = () => {
               </ul>
             </div>
           </div>
-
-          <br></br>
-
+          <br />
           <div className={styles.btn}>
-            <div className="btn-group justify-content-center">
+            <div className="btn-group">
               <button
                 type="button"
                 className="btn dropdown-toggle"
@@ -566,6 +570,7 @@ const a25workout = () => {
                       {splitTodos.map((splitTodo, splitTodoIndex) => (
                         <td key={splitTodoIndex}>{splitTodo}</td>
                       ))}
+
                       <td>
                         <div className="form-check">
                           <input
@@ -583,11 +588,17 @@ const a25workout = () => {
             </table>
           </div>
         </div>
+        <br />
 
         <div className={styles.main}>
           <div className={styles.chartBox}>
             <div className="justify-content-center">
-              <Bar data={data} width={400} height={400} option={options}></Bar>
+              <Line
+                data={data}
+                width={400}
+                height={400}
+                option={options}
+              ></Line>
             </div>
           </div>
         </div>
@@ -598,4 +609,4 @@ const a25workout = () => {
   );
 };
 
-export default a25workout;
+export default graph_workout;

@@ -21,6 +21,7 @@ const ProgressSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
+
     todos: [
       {
         todo_id: {
