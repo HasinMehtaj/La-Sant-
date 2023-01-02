@@ -6,9 +6,12 @@ import Navbar from "../components/Navbar";
 import { useRouter } from "next/router";
 import styles from "../styles/Home.module.css";
 import Footer from "../components/Footer";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const router = useRouter();
+  const success = () => toast("You are logged in");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,6 +22,7 @@ const Login = () => {
         Cookies.set("token", data.token);
         Cookies.set("user", JSON.stringify(data.user));
         router.push("/");
+        toast.success("You are logged in");
       }
     } catch (error) {
       console.log("login error", error);
