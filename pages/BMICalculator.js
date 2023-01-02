@@ -45,7 +45,6 @@ const BMICalculator = () => {
                         className="form-control form-control-lg"
                       />
                     </div>
-
                     <div className="form-outline mb-4">
                       <label className="form-label" htmlFor="text">
                         Height (Metres)
@@ -69,7 +68,6 @@ const BMICalculator = () => {
                     </div>
                     <br></br>
                     <br></br>
-
                     <input
                       disabled
                       type="text"
